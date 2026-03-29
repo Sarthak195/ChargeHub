@@ -1,0 +1,11 @@
+.chart-tooltip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-size: 0.8rem;
+  box-shadow: var(--shadow-md);
+}
+.tooltip-date { color: var(--text-muted); margin-bottom: 0.375rem; font-size: 0.7rem; }
+.tooltip-row { display: flex; justify-content: space-between; gap: 1rem; color: var(--text-secondary); }
+.tooltip-row strong { color: var(--text-primary); }

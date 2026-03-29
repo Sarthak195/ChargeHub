@@ -1,0 +1,6 @@
+# Project root gitignore
+.env
+.idea/
+.vscode/
+*.swp
+.DS_Store

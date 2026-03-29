@@ -1,0 +1,113 @@
+.session-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.power-card {
+  padding: 2rem;
+}
+
+.power-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(239,68,68,0.12);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 99px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--red-400);
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  background: var(--red-500);
+  border-radius: 50%;
+  animation: pulse-ring 1s ease-out infinite;
+  flex-shrink: 0;
+}
+
+.power-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.power-value {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.power-unit {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.power-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.power-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.power-fill {
+  height: 100%;
+  background: var(--grad-brand);
+  border-radius: 99px;
+  transition: width 1s ease;
+  box-shadow: 0 0 8px rgba(16,185,129,0.5);
+}
+.power-bar-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.session-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.session-stats .stat-card {
+  gap: 0.25rem;
+}
+.session-stats .stat-value { font-size: 1.5rem; }
+
+.rate-reminder {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 0.75rem 1rem;
+}
+.rate-reminder strong { color: var(--text-primary); }
+
+.stop-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: var(--radius-lg);
+}

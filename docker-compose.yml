@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: chargehub_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-chargehub}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-chargehubpass}
+      POSTGRES_DB: ${POSTGRES_DB:-chargehub}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chargehub"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: chargehub_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Override DATABASE_URL to use the postgres container hostname
+      DATABASE_URL: postgresql+asyncpg://chargehub:chargehubpass@postgres:5432/chargehub
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    extra_hosts:
+      # On Windows Docker Desktop this lets the container reach your LAN for plug IPs
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build: ./frontend
+    container_name: chargehub_ui
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
